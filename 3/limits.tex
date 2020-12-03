@@ -1,0 +1,185 @@
+\section{Limits and Continuity}
+If we want to differentiate, we need to make sense of a limit, so here goes.
+\subsection{Limit of a function}
+\begin{definition}
+    Suppose $a\in\mathbb C$ and $f:\mathbb C\setminus\{a\}\to\mathbb C$.
+    We say $\lim_{z\to a}f(z)=c\in\mathbb C$ if
+    $$\forall\epsilon>0,\exists\delta>0,|z-a|<\delta\implies |f(z)-c|<\epsilon$$
+    Sometimes we write $f(z)\to c$ as $z\to a$.
+\end{definition}
+We say $\lim_{z\to a}f(z)$ is undefined if there is no $c$ with $\lim_{z\to a}f(z)=c$.
+\begin{proposition}
+    If $\lim_{z\to a}f(z)=c$ and $\lim_{z\to a}f(z)=d$, then $c=d$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{example}
+    1. If $f\equiv c$, then $\lim_{z\to a}f(z)=c$ for any $a$, just take for example $\delta=1$.\\
+    2. If $f(z)=z$, then $\lim_{z\to a}f(z)=a$, as we can take $\delta=\epsilon$.\\
+    3. If $f(z)=1_{\mathbb C\setminus\{0\}}$, then $\lim_{z\to 0}f(z)=1$, taking for example $\delta=1$.\\
+    4. If
+    $$f(z)=\begin{cases}
+        1\text{, if $\operatorname{Re}(z)>0$}\\
+        0\text{, if $\operatorname{Re}(z)=0$}\\
+        -1\text{, if $\operatorname{Re}(z)<0$}
+    \end{cases}$$
+    then $\lim_{z\to 0}f(z)$ does not exist.\\
+    5. If $f(z)=z^2$, then $\lim_{z\to a}f(z)=a^2=f(a)$ by choosing $\delta=\min\{\epsilon/(2|a|+1),1\}$.
+\end{example}
+\begin{proposition}
+    $\lim_{z\to a}f(z)=c$ if and only if $\forall (z_n)\in\mathbb C$ with $z_n\to a$, we have $f(z_n)\to c$
+\end{proposition}
+\begin{proof}
+    If the limit of the function is $c$, given $\epsilon>0$, we can find $\delta$ such that $|z-a|<\delta\implies |f(z)-c|<\epsilon$.
+    Given a sequence $z_n\to a$, we can find $N\in\mathbb N$ such that $\forall n>N,|z_n-a|<\delta$, so using this $N$, $\forall n>N,|z_n-a|<\delta\implies |f(z_n)-c|<\epsilon$, so $f(z_n)\to c$.\\
+    Conversely, if $c$ is not the limit of that function, then $\exists\epsilon>0,\forall\delta>0,\exists z\in\mathbb C,|z-a|<\delta,|f(z)-c|>\epsilon$.
+    So we choose such $z_n$ for $\delta=1/n$, then $z_n\to a$ but $|f(z_n)-c|>\epsilon$ for any $n$, hence $f(z_n)$ does not tend to $c$.
+\end{proof}
+\begin{proposition}
+    Let $f,g:\mathbb C\setminus\{a\}\to\mathbb C$, if $\lim_{z\to a}f(z)=c$ and $\lim_{z\to a}f(z)=d$, then\\
+    1. $\lim_{z\to a}(f(z)+g(z))=c+d$.\\
+    2. $\lim_{z\to a}f(z)g(z)=cd$.\\
+    3. If $c\neq 0$, then $\lim_{z\to a}1/f(z)=1/c$.
+\end{proposition}
+\begin{proof}
+    Using the preceding proposition and laws of limits for sequences.
+\end{proof}
+\begin{proposition}
+    Suppose $f,g:\mathbb C\setminus\{a\}\to\mathbb R$ such that
+    $$\lim_{z\to a}f(z)=c,\lim_{z\to a}g(z)=d$$
+    then,\\
+    1. If $\forall z,f(z)\ge g(z)$, then $c\ge d$.\\
+    2. (Squeeze Rule) Let $h:\mathbb C\setminus\{a\}$ be such that $f\ge h\ge g$.
+    Then if $c=d$, we have $\lim_{z\to a}h(z)=c$.
+\end{proposition}
+\begin{proof}
+    Immediate.
+\end{proof}
+What if $f:A\to\mathbb C$ where $A$ is a subset of $\mathbb C$?
+Does it still makes sense?
+Does it change the limit?
+The answer to the second question if obviously no.
+But we can make sense of the limit.
+\begin{definition}
+    Suppose $A$ is a subset of $\mathbb C$.
+    We say $a\in\mathbb C$ is a limit point of $A$, if $\forall\delta>0,\exists z\in A,0<|z-a|<\delta$.
+\end{definition}
+\begin{example}
+    Any $a\in [0,\infty)$ is a limit point of $(0,\infty)$, and $\mathbb Z$ has no limit point.
+\end{example}
+\begin{definition}
+    If $f:A\to\mathbb C$ and $a\in\mathbb C$ is a limit point of $A$, we say $\lim_{z\to a}f(z)=c$ if $\forall\epsilon>0,\exists\delta>0,z\in A,0<|z-a|<\delta\implies |f(z)-c|<\epsilon$.
+\end{definition}
+Equivalently, $f(z_n)\to c$ for any sequence $(z_n)\in A$ such that $z_n\to a$.
+Also, it is also easy to show that the limit is unique.
+\begin{definition}
+    For $f:\mathbb R\to\mathbb R$, we define
+    $$\lim_{x\to a^+}f(x)=\lim_{x\to a}f|_{(a,\infty)}(x),\lim_{x\to a^-}f(x)=\lim_{x\to a}f|_{(-\infty,a)}(x)$$
+\end{definition}
+\subsection{Continuity}
+\begin{definition}
+    Suppose $A\subset\mathbb C$, and $f:A\to\mathbb C$.
+    We say $f$ is continuous at $a\in A$ if
+    $$\forall\epsilon>0,\exists\delta>0,z\in A,|z-a|<\delta\implies |f(z)-f(a)|<\epsilon$$
+\end{definition}
+\begin{remark}
+    $|f(a)-f(a)|=0<\epsilon$, so this condition is equivalent to say $|f(z)-f(z)|<\epsilon$ whenever $0<|z-a|<\delta$.
+\end{remark}
+\begin{proposition}
+    Suppose $f:A\to\mathbb C$ and $a\in A$, then the following conditions are equivalent:\\
+    1. $f$ is continuous at $a$.\\
+    2. Either $a$ is not a limit point of $A$ or $\lim_{z\to a}f(z)=f(a)$.\\
+    3. $f(z_n)\to f(a)$ whenever $z_n\to a$ is a sequence in $A$.
+\end{proposition}
+\begin{proof}
+    Verify from definition.
+\end{proof}
+\begin{example}
+    1. Constant functions are continuous at every point.
+\end{example}
+\begin{definition}
+    We say $f:A\to\mathbb C$ is continuous if $f$ is continuous at every $a\in A$.
+\end{definition}
+\begin{definition}
+    2. The identity function is continous.\\
+    3. (non-example) $f:\mathbb R\to\mathbb R$ by $f=1_{\mathbb Q}$. is not continuous at any point.\\
+    4. Consider $f:\mathbb R\to\mathbb R$ by
+    $$f(x)=\begin{cases}
+        1/q\text{, if $x$ is rational and $q=\min\{q\in\mathbb N:\exists p\in\mathbb Z,x=p/q\}$}\\
+        0\text{, otherwise}
+    \end{cases}$$
+    Then $f$ is not continuous at any $x\in\mathbb Q\setminus\{0\}$ but it is continuous at $a\notin\mathbb Q$.\\
+    5. $f:\mathbb R_{\ge 0}\to\mathbb R_{\ge 0}$ by $x\mapsto \sqrt{x}$ is continuous.
+\end{definition}
+\begin{proposition}
+    Suppose $f,g:A\to\mathbb C$ for some $A\subset\mathbb C$ and they are both continuous at $a\in A$.
+    Then $f+g,fg$ are continuous at $a$.
+    And if $f(a)\neq 0$, then $1/f$ is continuous at $a$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{example}
+    Everywhere in $\mathbb C$ we have any constant function is continous, the identity is continuous, hence any linear function is continuous, therefore any polynomial is continuous.
+    Also any rational function is continuous at anywhere it is defined.
+\end{example}
+The function $\exp$ is continuous, but we will not prove it now.
+\begin{proposition}
+    Let $A,B,C\subset\mathbb C$ and $f:A\to B,g:B\to C$ such that $f$ is continuous at $a$ and $g$ continuous at $f(a)$, then $g\circ f$ is continuous at $a$.
+\end{proposition}
+\begin{proof}
+    Straightforward.
+\end{proof}
+\begin{example}
+    $g:(0,\infty)\to (0,\infty),g(x)=\sqrt{x}$ and $f:(0,\infty)\to(0,\infty),f(x)=x^2+1$, so $x\mapsto (g\circ f)(x)=\sqrt{x^2+1}$ is continuous.
+\end{example}
+\begin{lemma}
+    Suppose $(x_n)$ is a sequence in $[a,b]$ and $x_n\to x\in\mathbb R$, then $x\in [a,b]$.
+\end{lemma}
+Note that this is false if we replace $[a,b]$ by $(a,b)$.
+\begin{proof}
+    Obvious.
+\end{proof}
+\begin{theorem}[Intermediate Value Theorem]
+    If $f:[a,b]\to\mathbb R$ is continuous, and $f(a)\le0,f(b)\ge0$, then there is some $c\in [a,b]$ such that $f(c)=0$.
+\end{theorem}
+This is false for $\mathbb Q$.
+\begin{remark}
+    Note that it does not matter if it is $f(a)\le0,f(b)\ge0$ or $f(b)\le0,f(a)\ge0$.
+    Also it suffices to show the case where the inequalities are both strict, so we will assume that in the proof.
+\end{remark}
+\begin{proof}
+    For $n\in\mathbb N$, we define $Q_n=\{a+k(b-a)/n:0\le k\le n\}$ and $P_n\subset Q_n$ such that $\forall x\in P_n,f(x)\le 0$, so $P_n$ is never empty.
+    Define $x_n=\max P_n$, then $a\le x_n\le b-(b-a)/n$ and $f(x_n)\le 0$.
+    We let $y_n=x_n+(b-a)/n=\min Q_n\setminus P_n\subset [a,b]$, then by maximality of $x_n$ we have $f(y_n)>0$.
+    By Bolzano-Weierstrass Theorem, there is a subsequence $x_{n_k}$ that converges to some $c\in [a,b]$ by the preceding lemma, so by continuity of $f$, $f(c)=\lim_{n\to\infty}f(x_n)\le 0$.
+    Therefore $y_{n_k}\to c$ as well since $(b-a)/n_k\to 0$, but then $f(c)=\lim_{n\to\infty}f(y_n)\ge 0$.
+    So $f(c)=0$.
+\end{proof}
+\begin{corollary}
+    An odd degree polynomial has a root in $\mathbb R$.
+\end{corollary}
+\begin{proof}
+    Immediate.
+\end{proof}
+\begin{corollary}
+    If $f:[a,b]\to\mathbb R$ is continuous, and $f(a)=x,f(b)=y$, then for all $z$ in between $x,y$ there is some $c\in [a,b]$ such that $f(c)=z$.
+\end{corollary}
+\begin{proof}
+    $g:x\mapsto x-z$ is continuous.
+    Then apply the preceding theorem.
+\end{proof}
+\begin{theorem}
+    Continuous function on bounded closed interval is bounded and attains its bounds.
+\end{theorem}
+Again it is not true in general for open intervals.
+\begin{proof}
+    Suffice to show this for upper bounds.
+    Let $f:[a,b]\to\mathbb R$ be continuous.
+    Let $A=f([a,b])$.
+    Suppose $A$ is not bounded above, then $\forall n\in\mathbb N,\exists x_n\in[a,b],f(x_n)>n$.
+    Then choose a convergent subsequence $(x_{n_k})$ of $(x_n)$, then $x_{n_k}\to x\in [a,b]$, but by continuity $f(x)=\lim_{k\to\infty}f(x_k)\ge\lim_{k\to\infty}n_k\to\infty$, contradiction.\\
+    Now that $A$ is bounded above, we choose $M=\sup A$, then $\forall n\in\mathbb N$, we can choose $x_n\in [a,b]$ such that $M-1/n<x_n\le M$.
+    Choose a convergent subsequence $x_{n_k}\to x\in [a,b]$, then continuity tells us that $f(x)=\lim_{k\to\infty}f(x_{n_k})$ which is bounded by $M-1/n_k,M$, hence $f(x)=M$ by Squeeze rule.
+\end{proof}

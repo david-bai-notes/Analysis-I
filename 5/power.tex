@@ -1,0 +1,239 @@
+\section{Special Functions}
+\subsection{Power Series}
+Recall that if $\sum_nc_n$ converges then $c_n\to0$.
+We also have a strong convergence test where if $|c_n|\le a_n$ for all $n$ and $\sum_na_n$ converges, then $\sum_nc_n$ converges.
+We used it to porve the ratio test: suppose $\lim_{n\to\infty}|c_{n+1}/c_n|$ exists and equals $\alpha$, then $\alpha<1$ implies $\sum_nc_n$ converges and $\alpha>1$ implies it diverges.
+\begin{definition}
+    A power series centered at $a\in\mathbb C$ is a series that can be written in the form
+    $$\sum_{n=0}^\infty c_n(z-a)^n,c_n\in\mathbb C$$
+\end{definition}
+\begin{example}
+    The series
+    $$\sum_{n=0}^\infty (z-1)^n,\sum_{n=0}\frac{z^n}{n!},\sum_{n=0}^\infty (-1)^n\frac{z^{2n}}{(2n)!}$$
+    are power series.
+    In general, any Taylor series around $a$ is a power series centered at $a$.
+\end{example}
+For a power series and each $z\in\mathbb C$, we can get a seperate series.
+Then we want to ask for which $z\in\mathbb C$ does the series converges.
+\begin{example}
+    $\sum_n(z-1)^n$ converges in $|z-1|<1$ and diverges otherwise.
+    On the other hand, $\sum_nz^n/n!,\sum_n(-1)^nz^{2n}/(2n)!$ converge absolutely.
+    But $\sum_nn!z^n$ converges iff $z=0$.
+\end{example}
+Note that suppose $|c_{n+1}/c_n|\to\alpha$, then
+$$\lim_{n\to\infty}\left|\frac{c_{n+1}(z-a)^{n+1}}{c_n(z-a)^n}\right|=\alpha|z-a|$$
+So for $|z-a|<1/\alpha$, the series converges and $|z-a|>1/\alpha$ means it diverges.
+But we do not know about the case $|z-a|=\alpha$.\\
+We want to show similar result in general (i.e. $\alpha$ may not exist).
+\begin{lemma}[Key Estimate]
+    Suppose $p_z$ is the series
+    $$\sum_{n=0}^\infty c_n(z-a)^n$$
+    and that $p_{z_0}$ converges, the there is $M>0$ such that
+    $$c_n\le\frac{M}{|z_0-a|^n}$$
+\end{lemma}
+\begin{proof}
+    We have $|c_n||z_0-a|^n\to 0$, so there is some $N$ such that $|c_n||z_0-a|^n<1$ for $n>N$, so $|c_n|\le 1/|z_0-a|^n$ for $n>N$, but we can take care of the rest by taking maximum since there are only finitely many terms left.
+\end{proof}
+\begin{theorem}
+    Suppose
+    $$P(z_0)=\sum_{n=0}^\infty c_n(z-a)^n$$
+    converges, then $P(z)$ converges absolutely whenever $|z-a|<|z_0-a|$.
+\end{theorem}
+\begin{proof}
+    Given $z,|z-a|<|z_0-a|$, let $\alpha=(z-a)/(z_0-a)$, so $|\alpha|<1$, so choose $M$ as in the preceding lemma gives $c_n|z-a|^n\le M|\alpha|^n$, but $\sum_mM|\alpha|^n$ converges as a geometric series, so $P(z)$ converges absolutely.
+\end{proof}
+\begin{corollary}
+    With $P(z)$ as above, either $P(z)$ converges for all $z\in\mathbb C$ or there exists some $R>0$ such that $P(z)$ converges absolutely for $|z|<R$ and diverges for $|z|>R$.
+\end{corollary}
+\begin{proof}
+    Immediate.
+\end{proof}
+Such an $R$ is obviously unique, so we define
+\begin{definition}
+    Such an $R$ is called the radius of convergence of the power series.
+\end{definition}
+Note that the series may or may not converge on the circle $|z-a|=R$.
+\begin{example}
+    The following series have radius of convergence $1$:
+    $$\sum_{n=0}^\infty nz^n,\sum_{n=1}^\infty\frac{z^n}{n^2},\sum_{n=0}^\infty\sum_{n=1}^\infty\frac{z^n}{n}$$
+    But they exhibit different behaviours on $|z|=1$.
+\end{example}
+\begin{proposition}
+    Suppose $P(z)$ has radius of convergence $R$, then\\
+    1. $c_n(z-a)^n\to 0$ for $|z|<R$\\
+    2. $c_n(z-a)^n$ is unbounded for $|z|>R$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+What we really want to do is to differentiate them.
+Suppose we have
+$$P(z)=\sum_{n=0}^\infty c_n(z-a)^n$$
+Then let $R>0$ be its radius of convergence, then $P:B_R(a)\to\mathbb C$ is a function.
+If $P$ is differentiable, we obviously want it to be
+$$Q(z)=\sum_{n=1}^\infty nc_n(z-a)^{n-1}$$
+which is also a power series.
+So we will want $Q$ to have radius of convergence $R$, $P$ to be differentiable and $P^\prime=Q$.
+\begin{proposition}
+    $Q$ has radius of convergence $R$.
+\end{proposition}
+\begin{proof}
+    Suppose $P(z_0)$ converges with $z_0\neq a$, then there is some $M>0$ with $|c_n|\le M/|z_0-a|^n$ for all $n$.
+    Then for any $z$ with $|z-a|<|z_0-a|$,
+    $$|nc_n(z-a)^{n-1}|\le nC\alpha^{n-1},C=M/|z_0-a|,\alpha=|z-a|/|z_0-a|<1$$
+    The rest is trivial.
+\end{proof}
+Since we can shift stuff around, we assume $a=0$ for the moment.
+The preceding proposition then says
+$$P(z)=\sum_{n=0}^\infty c_nz^n,Q(z)=\sum_{n=1}^\infty nc_nz^{n-1}$$
+both have radius of convergence $R$.
+What we want to show now is that $P$ is complex differentiable on $B_R(0)$ and its derivative is $Q$.
+The optimal way to do this is to use the idea of uniform convergence, but we do not have that tool right now, so here goes the clumsy solution.
+For $z\in B_R(0)$, consider
+\begin{align*}
+    P(z+h)-P(z)-hQ(z)&=\sum_{n=0}^\infty c_n(z+h)^n-\sum_{n=0}^\infty c_nz^n-h\sum_{n=1}^\infty nc_nz^{n-1}\\
+    &=\sum_{n=0}^\infty c_n((z+h)^n-z^n-nhz^{n-1})\\
+    &=\sum_{n=0}^\infty c_n\sum_{k=2}^n\binom{n}{k}h^kz^{n-k}\\
+    &=\sum_{n=0}^\infty h^2c_n\sum_{k=2}^n\binom{n}{k}h^{k-2}z^{n-k}\\
+    &=\sum_{n=0}^\infty h^2c_nr_n(h;z)
+\end{align*}
+But $r_n(h;z)$ is just a polynomial.
+So intuitively we want to show that its growth is slow, so we claim
+\begin{lemma}
+    For any $z,h\in\mathbb C$,
+    $$|r_n(h;z)|\le\binom{n}{2}(|h|+|z|)^{n-2}$$
+\end{lemma}
+\begin{proof}
+    First suppose that $z,h\in\mathbb R_{\ge 0}$, then by using Taylor's Theorem on $f(z)=z^n$, we have
+    $$f(z+h)=f(z)+hf^\prime(z)+\frac{h^2}{2}f^{\prime\prime}(y)$$
+    for some $y\in [z,z+h]$, so
+    $$r_n(h,z)=\binom{n}{2}y^{n-2}\le\binom{n}{2}(z+h)^{n-2}$$
+    For the general case,
+    \begin{align*}
+        |r_n(h,z)|&=\left|\sum_{i=0}^n\binom{n}{2}h^{i-2}z^{n-i}\right|\\
+        &\le\sum_{i=0}^n\binom{n}{2}|h|^{i-2}|z|^{n-i}\\
+        &=r_n(|h|,|z|)\le\binom{n}{2}(|z|+|h|)^{n-2}
+    \end{align*}
+    by above.
+\end{proof}
+\begin{theorem}\label{tbt_diff}
+    $P$ is complex differentiable on $B_R(a)$ and its derivative is $Q$.
+\end{theorem}
+\begin{proof}
+    Again take WLOG $a=0$.
+    Let $0<\rho<R-r_1=R-|z|$ and let $r_2=r_1+\rho<R$, then for $h\in B_\rho(0)$, $z+h\in B_\rho(z)\subset B_{r_2}(0)\subset B_R(0)$.
+    Pick $r_3$ such that $r_2<r_3<R$, then $P(r_3)$ converges, so $\exists M>0$ such that $|c_n||r_3|^n\le M$ for any $n$.
+    Then
+    \begin{align*}
+        |c_nr_n(h;z)|&\le\frac{M}{r_3^n}\binom{n}{2}(|h|+|z|)^{n-2}\\
+        &\le\frac{M}{r_2^2}\binom{n}{2}\alpha^n,\alpha=\frac{r_2}{r_3}<1
+    \end{align*}
+    Now the series $\sum_n\binom{n}{2}\alpha^n$ converges due to the ratio test, consequently
+    $$\sum_{n=0}^\infty c_nr_n(h;z)\to w$$
+    For some complex number, which we assume has modulus at most $C>0$, then
+    \begin{align*}
+        P(z+h)-P(z)-hQ(z)=h^2\sum_{n=0}^\infty c_nr_n(h;z)=h^2\beta(h)
+    \end{align*}
+    Where $\beta(h)$ is the series sum.
+    Let $\alpha(h)=h\beta(h)$, then $|\alpha(h)|\le C|h|$, so $\alpha(h)\to 0$ as $h\to 0$.
+    But also $\alpha(0)=0$, so $\alpha$ is $0$ at $0$ and continuous at $0$ and we have $P(z+h)=P(z)+hQ(z)+h\alpha(h)$, so the proof is done.
+\end{proof}
+\begin{corollary}
+    A power series
+    $$P(z)=\sum_{n=0}^\infty c_n(z-a)^n$$
+    with radius of convergence $R>0$ is infinitely differentiable on $B_R(a)$ and $n!c_n=f^{(n)}(a)$.
+\end{corollary}
+\begin{proof}
+    Immediate.
+\end{proof}
+\begin{example}
+    Consider the sum $\sum_nn^2/2^n$.
+    We have $\sum_nz^n=1/(1-z)$ for $|z|<1$, so by differentiating and building stuff we have $\sum_nn^2z^n=z(1+z)/(1-z)^3$, so the series converges to $6$ by taking $z=1/2$.
+\end{example}
+\begin{remark}
+    In general, it is false to say $f_n(z)\to f(z)$ implying $f_n^\prime(z)\to f^\prime(z)$.
+    For example one can take $f_n(x)=\sin(nx)/n$ converges to $0$ (even uniformly), but $f_n^\prime(x)=\cos(nx)$ certainly does not converge to $0$.
+\end{remark}
+\subsection{The Exponentials, etc.}
+\begin{definition}
+    For $z\in\mathbb C$, the exponential function $\exp(z)$ is defined by
+    $$\exp(z)=\sum_{n=0}^\infty\frac{z^n}{n!}$$
+    which converges for any $z\in\mathbb C$ by the ratio test.
+\end{definition}
+We have $\exp^\prime=\exp$ by Theorem \ref{tbt_diff}.
+Also $\exp(0)=1$.
+\begin{proposition}
+    $\forall z,w\in\mathbb C,\exp(z+w)=\exp(z)\exp(w)$.
+\end{proposition}
+\begin{proof}
+    Fix $c\in\mathbb C$ and consider $f(x)=\exp(x)\exp(c-x)$, then by differentiation $f^\prime=0$, so $f$ is constant.
+    So $\exp(x)\exp(c-x)=\exp(0)\exp(c-0)=\exp(c)$, so taking $x=z,c=z+w$ gives the result.
+\end{proof}
+In particular, $\exp(z)\exp(-z)=1$, so $\exp(z)$ is never zero.
+And $\exp(-z)=1/\exp(z)$.
+By induction, we can easily see that $\exp(nz)=\exp(z)^n$ for all $n\in\mathbb Z$.\\
+For $x\in\mathbb R$, $\exp x$ is real since every term of it is real.
+\begin{lemma}
+    $\exp(\mathbb R)=(0,\infty)$ and it is a strictly increasing bijection $\mathbb R\to (0,\infty)$.
+\end{lemma}
+\begin{proof}
+    Obvious.
+\end{proof}
+The lemma guarantees a function $\log:(0,\infty)\to\mathbb R$ as the inverse of $\exp:\mathbb R\to (0,\infty)$.
+So we have $\log(1)=0,\log(ab)=\log(a)+\log(b)$ for $a,b>0$.
+As for the derivative, by the inverse function theorem, $\log^\prime(x)=1/x$.
+\begin{proposition}
+    $$-\log(1-y)=\sum_{n=1}^\infty\frac{y^n}{n}$$
+    for $|y|<1$.
+\end{proposition}
+\begin{proof}
+    Let $p(y)$ be the series in the right hand side, then $p$ does converge for $|y|<1$ by the ratio test.
+    Also $p^\prime(y)=1/(1-y)$ by differenating term-by-term.
+    So $f(y)=p(y)+\log(1-y)$ has zero derivative, so $f$ is constant.
+    Also when $y=0$, we have $f(0)=0$, so $f\equiv 0$, hence $-\log(1-y)=p(y)$.
+\end{proof}
+\begin{definition}
+    For $a\in (0,\infty)$ and $x\in\mathbb R$, we define the power $a^x$ is defined by $\exp(x\log a)$.
+\end{definition}
+It follows instantly that the power is well-defined, differentiable, and has the series
+$$a^x=\sum_{n=0}^\infty\frac{(\log a)^n}{n!}x^n$$
+Also we have $a^{x+y}=a^xa^y$ and $(a^x)^y=a^{xy}$.
+Define the constant $e=\exp(1)$, so $e^x=\exp(x)$.
+\begin{definition}
+    For $z\in\mathbb C$, we define
+    $$\sin z=\frac{1}{2i}(e^z-e^{-z}),\cos z=\frac{1}{2}(e^z+e^{-z})$$
+\end{definition}
+Then it follows that they are both differentiable and $\sin^\prime=\cos,\cos^\prime=-\sin$
+Also they have power series
+$$\sin z=\sum_{n=0}^\infty(-1)^n\frac{1}{(2n+1)!}z^{2n+1},\cos z=\sum_{n=0}^\infty(-1)^n\frac{1}{(2n)!}z^{2n}$$
+The familiar trigonometric identities all follows from definition.
+In particular, $\sin^2z+\cos^2z=1$, so $\cos,\sin$ has range in $[0,1]$ whenever $z\in\mathbb R$.
+We also have Euler's formula: $e^{iz}=\cos z+i\sin z$.\\
+Now we recall the alternating series test: If $a_{n+1}\ge a_n\ge 0$ and $a_n\to 0$, then $\sum_n(-1)^na_n$ converges.
+Furthermore, if we let $s_n$ be the $n^{th}$ partial sum of the alternating series and $s$ be the limit, then
+\begin{proposition}
+    For any $n\in\mathbb N$, $s_{2n}\ge s\ge s_{2n+1}$.
+\end{proposition}
+\begin{proof}
+    $s_{2n}$ decreases to $s$ and $s_{2n+1}$ increases to $s$, so the proposition follows immediately.
+\end{proof}
+\begin{lemma}
+    $\sin x>0$ for $x\in (0,2]$.
+\end{lemma}
+\begin{proof}
+    For $x\in (0,2]$, $\sin x$ is an alternating series, so $\sin x\ge x-x^3/6=x(1-x^2/6)>0$.
+\end{proof}
+\begin{lemma}
+    $\cos x>0$ for $x\in [0,1]$ and there is a unique $\alpha\in (1,2]$ with $\cos\alpha=0$.
+\end{lemma}
+\begin{proof}
+    For $x\in [0,1]$, $\cos$ is an alternating series, so $\cos x\ge 1-x^2/2\ge 1/2>0$ for $x\in [0,1]$.\\
+    Now the series $\cos 2$ is alternating from the third term, so $\cos 2\le 1-2^2/2+2^4/24=-1/3<0$.
+    So there is some $\alpha\in (1,2)$ such that $\cos\alpha=0$ by the intermediate value theorem.
+    To see uniqueness, observe that $\cos^\prime=-\sin<0$ in $[1,2]$ by the preceding lemma, so $\cos$ must be strictly monotone hence injective in $[1,2]$, therefore $\alpha$ is unique.
+\end{proof}
+\begin{definition}
+    Let $\alpha$ be as in the preceding lemma, then we define $\pi=2\alpha$.
+\end{definition}
+Consequenly $\sin\alpha=1$ by $\sin^2z+\cos^2z=1$, and $\cos(x+\alpha)=-\sin x,\sin(x+\alpha)=\cos x$.
+So $\sin,\cos$ are periodic with period $2\pi$, and we know the trends in between.

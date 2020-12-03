@@ -1,0 +1,323 @@
+\section{Integration}
+\subsection{The Riemann Integral}
+Our goal is the following: for a ``sufficiently nice'' function $f:[a,b]\to\mathbb R$ we want to define its integral
+$$\int_a^bf(x)\,\mathrm dx$$
+We would like to think of this as the area under the graph of $y=f(x)$, which motivates the Riemann integral.
+\begin{definition}
+    We say $f:[a,b]\in\mathbb R$ is bounded if $\exists M\in\mathbb R,|f(x)|\le M$ for all $x\in [a,b]$.
+\end{definition}
+\begin{definition}
+    A dissection of the interval $[a,b]$ is a finite subset $D\subset [a,b]$ such that $a,b\in D$.
+    If $D$ is a dissection, we can write $D=\{a_0,\ldots,a_n\}$ where $a=a_0<a_1<\cdots<a_n=b$.
+\end{definition}
+Note that if $D,D'$ are both dissections, so is $D\cup D'$.
+\begin{definition}
+    If $f:[a,b]\to\mathbb R$ is bounded and a dissection $D$ consists of $a=a_0<a_1<\cdots<a_n=b$, then we define the upper and lower Riemann sums wrt $D$ by
+    $$U(f,D)=\sum_{i=1}^n(a_i-a_{i-1})\sup_{a_{i-1}<x<a_i}f(x),L(f,D)=\sum_{i=1}^n(a_i-a_{i-1})\inf_{a_{i-1}<x<a_i}f(x)$$
+    respectively.
+    They exists as $f$ is bounded.
+\end{definition}
+Since $f$ is bounded, $U,L$ are bounded over all dissections $D$.
+\begin{lemma}
+    If $D\subset D'$ are dissections of $[a,b]$, then $U(f,D)\ge U(f,D')$ and $L(f,D)\le L(f,D')$.
+\end{lemma}
+\begin{proof}
+    Obvious.
+\end{proof}
+\begin{lemma}
+    If $D_1,D_2$ are dissections of $[a,b]$, then $U(f,D_1)\ge L(f,D_2)$.
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+Consider the nonempty sets
+$$U=\{U(f,D):D\text{ dissects }[a,b]\},L=\{L(f,D):D\text{ dissects }[a,b]\}$$
+It then follows by the preceding lemma that $U$ is bounded below and $L$ is bounded above, so
+\begin{definition}
+    We define
+    $$U(f)=\inf U=\inf_{D\text{ dissects }[a,b]}U(f,D),L(f)=\sup L=\sup_{D\text{ dissects }[a,b]}L(f,D)$$
+    as the upper and lowe Riemann sums of $f$ over $[a,b]$.
+\end{definition}
+\begin{lemma}
+    $U(f)\ge L(f)$.
+\end{lemma}
+\begin{proof}
+    Follows from definition.
+\end{proof}
+So we will want to define
+\begin{definition}
+    If $L(f)=U(f)$, then we say $f$ is (Riemann) integrable on $[a,b]$ and write
+    $$\int_a^bf(x)\,\mathrm dx=L(f)=U(f)$$
+\end{definition}
+\begin{example}
+    1. Consider $f(x)=c$ for a constant $c$ for all $x\in [a,b]$, then consider $D=\{a,b\}$, then $U(f,D)=c(b-a)=L(f,D)$, hence $U(f)=c(b-a)=L(f)$, therefore $f$ is Riemann integrable and
+    $$\int_a^bf(x)\,\mathrm dx=c(b-a)$$
+    2. Take $f:[a,b]\to\mathbb R$ by $f(x)=0$ if $x\in\mathbb Q$ and $f(x)=1$ if $x\in\mathbb R\setminus\mathbb Q$.
+    Note that if $a_{i-1}<a_i$, then $[a_{i-1},a_i]$ contains both rational and irrational numbers, so it follows that $U(f,D)=b-a$ and $L(f,D)=0$ for any dissection $D$ of $[a,b]$, therefore $U(f)=b-a\neq 0=L(f)$, hence $f$ is not Riemann integrable.
+\end{example}
+\subsection{Properties of the Integral}
+\begin{proposition}
+    $f:[a,b]\to\mathbb R$ is integrable on $[a,b]$ and
+    $$\int_a^bf(x)\,\mathrm dx=I$$
+    iff for every $\epsilon>0$, there is a dissection $D$ of $[a,b]$ with $U(f,D)< I+\epsilon$ and $L(f,D)>I-\epsilon$
+\end{proposition}
+\begin{proof}
+    Immediate.
+\end{proof}
+\begin{proposition}
+    $f:[a,b]\to\mathbb R$ is integrable on $[a,b]$ iff for any $\epsilon>0$, there is a dissection $D$ of $[a,b]$ such that $U(f,D)-L(f,D)<\epsilon$
+\end{proposition}
+\begin{proof}
+    Consider $\inf_D U(f,D)-L(f,D)$.
+\end{proof}
+\begin{definition}
+    If $D=\{a=a_0<a_1<\ldots<a_n=b\}$ is a dissection, then the mesh of $D$ is the difference $m(D)=\max\{a_i-a_{i-1}\}$.
+\end{definition}
+Observe that if $\epsilon>0$, then one can find dissection with mesh less than $\epsilon$.
+\begin{theorem}
+    If $f:[a,b]\to\mathbb R$ is increasing, then $f$ is integrable.
+\end{theorem}
+\begin{proof}
+    Since $f$ is increasing, $f(a_i)\ge f(x)$ whenever $x\le a_i$.
+    So
+    $$\sup_{a_{i-1}<x<a_i}f(x)\le f(a_i),\inf_{a_{i-1}<x<a_i}f(x)\ge f(a_{i-1})$$
+    Hence
+    $$U(f,D)=\sum_{i=1}^n(a_i-a_{i-1})\sup_{a_{i-1}<x<a_i}f(x)\le\sum_{i=1}^n(a_i-a_{i-1})f(a_i)$$
+    and
+    $$L(f,D)=\sum_{i=1}^n(a_i-a_{i-1})\inf_{a_{i-1}<x<a_i}f(x)\ge\sum_{i=1}^n(a_i-a_{i-1})f(a_{i-1})$$
+    So by substracting
+    $$U(f,D)-L(f,D)\le \sum_{i=1}^n(a_i-a_{i-1})(f(a_i)-f(a_{i-1}))\le m(D)(f(b)-f(a))<\epsilon$$
+    If $f(b)=f(a)$ then $f$ is constant and we know that it is integrable.
+    Otherwise we take $D$ with $m(D)<\epsilon/(f(b)-f(a))$, then by the preceding lemma, $f$ is integrable on $[a,b]$.
+\end{proof}
+\begin{proposition}
+    Suppose $f,g:[a,b]\in\mathbb R$ are integrable, then\\
+    1. If $\lambda\in\mathbb R$, then $f+\lambda g$ is integrable and
+    $$\int_a^bf(x)+\lambda g(x)\,\mathrm dx=\int_a^bf(x)\,\mathrm dx+\lambda\int_a^bg(x)\,\mathrm dx$$
+    2. For any $c\in [a,b]$, $f|_{[a,c]},f|_{[c,b]}$ are integrable and
+    $$\int_a^cf(x)\,\mathrm dx+\int_c^bf(x)\,\mathrm dx=\int_a^bf(x)\,\mathrm dx$$
+    3. If $f\ge g$ on $[a,b]$, then
+    $$\int_a^bf(x)\,\mathrm dx\ge\int_a^bg(x)\,\mathrm dx$$
+    4. $|f|$ is integrable and
+    $$\left|\int_a^bf(x)\,\mathrm dx\right|\le\int_a^b|f(x)|\,\mathrm dx$$
+\end{proposition}
+\begin{proof}
+    Trivial but need patience.
+\end{proof}
+\subsection{Fundamental Theorem of Calculus}
+Recall that continuous function on closed interval is bounded.
+\begin{theorem}\label{cont_int}
+    If $f:[a,b]\to\mathbb R$ is continuous, then $f$ is integrable.
+\end{theorem}
+\begin{lemma}
+    Suppose $U(f,D)-L(f,D)>c>0$, then there is $a_i\in D$ such that $\exists x,y\in (a_i,a_{i+1})$ with $f(x)-f(y)\ge c/(b-a)$.
+\end{lemma}
+\begin{proof}
+    Basically just pigeonhole principle.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{cont_int}]
+    If $f$ is not integrable, then there is some $\epsilon>0$ such that $U(f,D)-L(f,D)>\epsilon$ for all dissections $D$ of $[a,b]$.
+    Let $0<\alpha<\epsilon/(b-a)$.
+    By the preceding lemma, if $D$ is a dissection of $[a,b]$, then there is some $a_i\in D$ such that $\exists x,y\in (a_i,a_{i+1}),f(x)-f(y)\ge\alpha$
+    Consider the dissections $D_n$ with mesh $m(D_n)<1/n$, then we can find $a_i^{(n)}\in D_n$ and $x_n,y_n\in (a_i^{(n)},a_{i+1}^{(n)}),f(x_n)-f(y_n)\ge\alpha$.
+    Since $m(D_n)<1/n$, we know that $|x_n-y_n|<1/n$, so $x_n-y_n\to 0$.
+    Now by Bolzano-Weierstrass, we can find a converging subsequence $x_{n_k}\to x$ of $x_n$.
+    Also $x\in [a,b]$ since $[a,b]$ is closed.
+    Note also that since $x_n-y_n\to 0$, we have $y_{n_k}\to x$.
+    But $f$ is continuous, so $0<\alpha\le f(x_{n_k})-f(y_{n_k})\to 0$, contradiction.
+\end{proof}
+\begin{theorem}[Fundamental Theorem of Calculus, Version 1]
+    Suppose $f:[a,b]\to\mathbb R$ is continuous, then define
+    $$G(x)=\int_a^xf(t)\,\mathrm dt$$
+    for $x\in [a,b]$.
+    Then $G$ is differentiable and $G^\prime=f$.
+\end{theorem}
+Note that given $x\in [a,b]$, since $f$ is continuous in $[a,b]$, then it is continuous and hence integrable in $[a,x]$, so $G(x)$ is always well-defined.
+\begin{proof}
+    We need to show that, as $h\to 0$,
+    $$\frac{G(x+h)-G(x)}{h}\to f(x)$$
+    for fixed $x\in[a,b]$.
+    Assume for the moment that $h>0$, then
+    $$G(x+h)-G(x)=\int_x^{x+h}f(t)\,\mathrm dt$$
+    Given $\epsilon>0$, we can find $\delta>0$ such that $|f(t)-f(x)|<\epsilon$ whenever $|t-x|<\delta$.
+    So whenever $0<h<\delta$, we have $f(x)-\epsilon<f(t)<f(x)+\epsilon$ for $t\in [x,x+h]$, so
+    $$f(x)h-\epsilon h=\int_x^{x+h}f(x)-\epsilon\,\mathrm dt\le\int_{x}^{x+h}f(t)\,\mathrm dt\le\int_x^{x+h}f(x)-\epsilon\,\mathrm dt=f(x)h+\epsilon h$$
+    hence
+    $$\left|\frac{G(x+h)-G(x)}{h}-f(x)\right|\le\epsilon$$
+    for $0<h<\delta$, hence
+    $$\lim_{h\to 0^+}\frac{G(x+h)-G(x)}{h}=f(x)$$
+    Using exactly the same way, we also have
+    $$\lim_{h\to 0^-}\frac{G(x+h)-G(x)}{h}=f(x)$$
+    Combining them gives the result.
+\end{proof}
+\begin{definition}
+    If $F,f:[a,b]\to\mathbb R$ with $F^\prime=f$, we say $F$ is an antiderivative of $f$.
+\end{definition}
+So the theorem says every continuous function on closed interval has an antiderivative.
+\begin{theorem}[Fundamental Theorem of Calculus, Version 2]
+    If $f:[a,b]\to\mathbb R$ is continuous and $F:[a,b]\to\mathbb R$ is differentiable with $F^\prime=f$, then
+    $$\int_a^bf(x)\,\mathrm dx=F(b)-F(a)$$
+\end{theorem}
+\begin{proof}
+    Let
+    $$G(x)=\int_a^xf(t)\,\mathrm dt$$
+    Then $G$ is differentiable and $G^\prime=f=F^\prime$, so $(G-F)^\prime=0$, hence $G-F$ is constant hence and equals $G(a)-F(a)=-F(a)$.
+    Hence
+    $$\int_a^bf(x)\,\mathrm dx=G(b)=F(b)+G(b)-F(b)=F(b)-F(a)$$
+    Which is what we want.
+\end{proof}
+Note that we have used here many theorems about the real numbers, like the mean value theorem.
+\begin{corollary}
+    Suppose $f:[a,b]\to\mathbb R$ is continuous and $g:[c,d]\to\mathbb R$ is $C^1$, and $g(c)=a, g(d)=b$, then
+    $$\int_a^bf(t)\,\mathrm dt=\int_c^df(g(s))g^\prime(s)\,\mathrm ds$$
+\end{corollary}
+\begin{proof}
+    Chain rule and FTC.
+\end{proof}
+\begin{corollary}[Integration by Part]
+    Suppose $f,g:[a,b]\to\mathbb R$ are both $C^1$, then
+    $$\int_a^bg^\prime(t)h(t)\,\mathrm dt=g(b)h(b)-g(a)h(a)-\int_a^bg(t)h^\prime(t)\,\mathrm dt$$
+\end{corollary}
+\begin{proof}
+    Product rule and FTC.
+\end{proof}
+Recall that if $f:[a,b]\to\mathbb R$ is $C^k$, the $k^{th}$ Taylor polynomial centered at $a$ is
+$$P_k(x)=\sum_{i=0}^k\frac{f^{(i)}(a)}{i!}(x-a)^i$$
+\begin{theorem}[Integral Form of Taylor's Theorem]
+    If $f:[a,b]\to\mathbb R$ is $C^k$ and $x\in[a,b]$, then $R_k(x)=f(x)-P_k(x)$ has
+    $$R_k(x)=\int_a^x\frac{(x-t)^{k-1}}{(k-1)!}f^{(k)}(t)\,\mathrm dt$$
+\end{theorem}
+\begin{proof}
+    Induction by using integration by part.
+\end{proof}
+\begin{corollary}
+    If $f:[a,b]\to\mathbb R$ is $C_k$, then there is a constant $M\in\mathbb R$ such that $|f(x)-P_{k-1}(x)|\le M|x-a|^k$.
+\end{corollary}
+\begin{proof}
+    Since $f$ is $C^k$, $|f^{(k)}|$ is bounded.
+    The rest follows instantly.
+\end{proof}
+If $x>0,s\in\mathbb R$, we defined $x^s=\exp(s\log x)$, so $\mathrm dx^s/\mathrm dx=sx^{s-1}$.
+Now consider $f(x)=(1+x)^s$.
+It has Taylor polynomials (centered at $0$)
+$$P_k(x)=\sum_{i=0}^k\binom{s}{i}x^i,\binom{s}{i}=\frac{1}{i!}\prod_{j=0}^{i-1}(s-j)$$
+We write $P(x)$ to be the formal sum when $k\to\infty$.
+By the ratio test, $P$ converges whenever $|x|<1$.
+\begin{theorem}[Newton's Binomial Theorem]\label{gen_bin}
+    For $x\in (-1,1)$, $P(x)$ converges to $(1+x)^s$.
+\end{theorem}
+\begin{lemma}
+    $$k\binom{s}{k}=s\binom{s-1}{k-1},\binom{s}{k-1}+\binom{s}{k}=\binom{s+1}{k}$$ 
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{gen_bin}]
+    By termwise differentiation,
+    $$(1+x)P^\prime(x)=(1+x)\sum_{i=0}^\infty i\binom{s}{i}x^{i-1}=sP(x)$$
+    by the preceding lemma.
+    So consider $h(x)=(1+x)^{-s}P(x)$, so $h^\prime(x)=0$ by the differential equation we obtained above, hence $h$ is constant in $(-1,1)$, hence $h\equiv h(0)=1$.
+    Therefore $P(x)=(1+x)^s$ for each $x\in (-1,1)$.
+\end{proof}
+\subsection{Improper Integral}
+Our definition of integral
+$$\int_a^bf(x)\,\mathrm dx$$
+requires $a,b<\infty$ and $f$ is defined and bounded in $[a,b]$.
+But we'd also like to think about things like
+$$\int_1^\infty\frac{\mathrm dx}{x^2+1},\int_0^1\frac{\mathrm dx}{\sqrt{x}}$$
+which are not defined in our previous definition of integral.
+Suppose $f:[a,b)\to\mathbb R$ is continuous and $b\in\mathbb R\cup\{\infty\}$.
+Then if $x\in [a,b)$, then
+$$\int_a^xf(t)\,\mathrm dt$$
+is well-defined since $f$ is continuous on $[a,x]$.
+\begin{definition}
+    If $f:[a,b)\to\mathbb R$ is continuous and
+    $$\lim_{x\to b^-}\int_a^xf(t)\,\mathrm dt$$
+    exists and equals to some $c\in\mathbb R$, we define
+    $$\int_a^bf(t)\,\mathrm dt=c$$
+    and say that this integral converges.
+    If this limit does not exist, we say the integral diverges.\\
+    Similarly, if $f:(a,b]\to\mathbb R$ is continuous and
+    $$\lim_{x\to a^+}\int_x^bf(t)\,\mathrm dt$$
+    exists and equals to $c$, then we define
+    $$\int_a^bf(t)\,\mathrm dt=c$$
+    And say that this integral converges.
+    Otherwise we say this integral diverges.
+\end{definition}
+Note that by FTC this definition (whenever the integral converges) does coincide with our original definition of integrals.
+\begin{example}
+    Consider the integral
+    $$\int_1^\infty t^{-s}\,\mathrm dt$$
+    Then for $s>1$, then integral converges and equals $1/(s-1)$, and it diverges for $s\le 1$.
+    Similarly
+    $$\int_0^1 t^{-s}\,\mathrm dt$$
+    converges iff $s<1$.
+\end{example}
+More generally,
+\begin{definition}
+    If $f:(a,b)\to\mathbb R$ is continuous, then choose $c\in (a,b)$, then if
+    $$\int_a^cf(t)\,\mathrm dt,\int_c^bf(t)\,\mathrm dt$$
+    both converge, then we say the integral of $f(t)$ over $(a,b)$ converges and
+    $$\int_a^bf(t)\,\mathrm dt=\int_a^cf(t)\,\mathrm dt+\int_c^bf(t)\,\mathrm dt$$
+\end{definition}
+Note that this definition (both the convergence and the value of the integral) does not depend on the choice of $c$.
+\begin{example}
+    We have
+    $$\int_{-\infty}^\infty\frac{\mathrm dx}{1+x^2}=\int_{-\infty}^0\frac{\mathrm dx}{1+x^2}+\int_{0}^\infty\frac{\mathrm dx}{1+x^2}=\pi$$
+    But
+    $$\int_{-\infty}^\infty t\,\mathrm dt$$
+    does not converge since
+    $$\int_0^\infty f(t)\,\mathrm dt$$
+    does not converge.
+    $$\int_0^\infty t^{-s}\,\mathrm dt=\int_0^1 t^{-s}\,\mathrm dt+\int_1^\infty t^{-s}\,\mathrm ds$$
+    never converges for any value of $s$.
+\end{example}
+\begin{proposition}[The Integral Test]
+    Suppose $f:[1,\infty)\to[0,\infty)$ is continuous and decreasing, then
+    $$\sum_{n=1}^\infty f(n)$$
+    converges iff
+    $$\int_1^\infty f(t)\,\mathrm dt$$
+    converges.
+\end{proposition}
+\begin{example}
+    $\sum_nn^{-s}$ converges iff $s>1$ due to our discussion on the integral of $t^{-s}$ over $[1,\infty)$.
+\end{example}
+\begin{proof}
+    Since $f(x)\ge 0$,
+    $$F(x)=\int_1^x f(t)\,\mathrm dt$$
+    is increasing.
+    Let $A=F([1,\infty))$, then if $A$ is bounded above iff the integral converges.
+    Similarly since $F(n)\ge 0$, the sequence $s_n$ of partial sums is increasing, so the series converges iff $B=\{s_n\}$ is bounded above.
+    Now let $D_n=\{1,2,\ldots,n\}$ be a dissection of $[1,n]$, then
+    $$s_n-f(1)=L(f,D_n)\le F(n)\le U(f,D_n)=s_n-f(n)\le s_n-c$$
+    where $c=\inf_x f(x)$ (exists as $f$ is bounded below by $0$) since $f$ is decreasing.
+    This implies the claim.
+\end{proof}
+\begin{remark}
+    As we see in the proposition, improper integrals behave like series in a certain sense.
+    We also have a comparison test for improper integrals.
+    If $f,g:[a,b)\to\mathbb R$ satisfies $|g|\le f$ and
+    $$\int_a^bf(t)\,\mathrm dt$$
+    converges, then
+    $$\int_a^bg(t)\,\mathrm dt$$
+    converges.
+\end{remark}
+Using improper integrals, we can define certain interesting functions.
+\begin{definition}
+    The gamma function $\Gamma:(0,\infty)\to\mathbb R$ is defined by
+    $$\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}\,\mathrm dx$$
+\end{definition}
+Note that the integral always converges by whatever triviality, so this function is always well-defined.
+Note also that by integration by part we know that for $s>1$, we have $\Gamma(s+1)=s\Gamma(s)$, hence $\Gamma(n+1)=n!$ for $n\in\mathbb Z_{\ge 1}$.\\
+One of the motivation of defining this gamma function is because of the following (here many informal arguments are used):
+Now consider an $n$-dimensional sphere $S^{n-1}=\{v\in\mathbb R^n:|v|=1\}$.
+Let $V(S^{n-1})$ be the volume (or area, etc.) of $S^{n-1}$, so for example $V(S_1)=2\pi$.
+Observe that
+$$\int_{\mathbb R^n}f(|v|)\,\mathrm dv=\int_0^\infty V(S^{n-1})r^{n-1}f(r)\,\mathrm dr$$
+Now consider $f(r)=e^{-r^2}$ and let $c_n$ be the integral as above, then
+$$c_n=\prod_{i=1}^n\int_\mathbb Re^{-x^2}\,\mathrm dx=(c_1)^n$$
+But on the other hand $c_n$ equals to
+$$\int_0^\infty V(S^{n-1})r^{n-1}e^{-r^2}\,\mathrm dr=\frac{V(S^{n-1})}{2}\Gamma\left( \frac{n}{2} \right)$$
+So
+$$V(S^{n-1})=\frac{2c_1^n}{\Gamma(n/2)}$$
+We know that $c_1=\sqrt{\pi}$ since we know $V(S_1)=2\pi$, and this gives the formula.

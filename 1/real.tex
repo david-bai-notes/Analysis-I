@@ -1,0 +1,70 @@
+\section{The Real and Complex Numbers}
+\begin{definition}
+    The real numbers is a set $\mathbb R$ such that\\
+    1. The rational numbers $\mathbb Q$ is contained in $\mathbb R$.\\
+    2. $\mathbb R$ is an ordered field.\\
+    3. It satisfies the least-upper-bound property.
+\end{definition}
+$\mathbb R$ is a field if it has two binary operations $+,\cdot$ such that $(\mathbb R,+),(\mathbb R\setminus\{0\},\cdot)$ are abelian groups and $\forall a,b,c\in\mathbb R,(a+b)c=ac+bc$.
+\begin{example}
+    1. $\mathbb Q$ is a field.\\
+    2. $\mathbb Z/p\mathbb Z$ is a field for $p$ prime and no otherwise.
+\end{example}
+An ordered field means a field such that there is a total order $<$ on $\mathbb R$ such that $a>b\implies a+c>b+c$ and $a>0,b>0\implies ab>0$.
+\begin{example}
+    $\mathbb Q$ is an ordered field but $\mathbb Z/p\mathbb Z$ is not.
+\end{example}
+\begin{definition}
+    Let $X$ be an ordered set and $A\subset X$.
+    We say $A$ has an upper bound in $X$ if $\exists a\in X,\forall x\in A,x\le a$.
+    We call $a$ an upper bound for $A$.
+    If that is true, we say $A$ is bounded above.\\
+    We say $a\in X$ is the least upper bound, or supremum of $A$ if it is an upper bound and $a'\ge a$ whenever $a'$ is an upper bound of $A$.
+    So we write $a=\sup A$ since it is obvious that supremums are unique.
+\end{definition}
+\begin{definition}
+    We say $X$ has the LUBP if any nonempty subset of $X$ that is bounded above has a supremum.
+\end{definition}
+Note that $\mathbb Q$ does not have LUBP by considering $\{x\in\mathbb Q:x^2<2\}$.\\
+These definitions can be easily extended to lower bounds and greatest lower bounds and greatest-lower-bound property.
+We write $\inf$ or infermum for the greatest lower bound.
+\begin{proposition}
+    1. Given the rational numbers, we can construct the real numbers satisfying the axioms.
+    2. If $X$ is an ordered field that satisfies the LUBP, then there is an isomorphism between ordered fields $\phi:X\to\mathbb R$.
+\end{proposition}
+\begin{proof}
+    Partially obvious.
+    Some might be covered later.
+\end{proof}
+\begin{proposition}
+    1. The natural numbers is not bounded above.\\
+    2. $\forall x\in\mathbb R,\exists N\in\mathbb N,N>x$.\\
+    3. $\forall x\in\mathbb R_{>0},\exists N\in\mathbb N,1/N<x$.\\
+    4. $\forall x,y\in\mathbb R,x<y\implies\exists q\in\mathbb Q,x<q<y$.\\
+    5. $\forall x\in\mathbb R_{>0},\exists y\in\mathbb R,y^2=x$.
+\end{proposition}
+\begin{proof}
+    All obvious.
+\end{proof}
+\begin{definition}
+    The complex numbers $\mathbb C$ is
+    $$\left\{ z\in M_{2\times 2}(\mathbb R):z=\begin{pmatrix}
+        a&b\\
+        -b&a
+    \end{pmatrix}\right\}$$
+    which becomes a field under matrix addition and multiplication.
+    Let $1=I$ and $i=\left(\begin{smallmatrix}
+        0&1\\
+        -1&0
+    \end{smallmatrix}\right)$, then we have an obvious bijection $\mathbb R^2\to\mathbb C$ with $(a,b)\mapsto a+bi$.
+\end{definition}
+\begin{definition}
+    If $z=a+bi$, we set the modulus, or norm, by $|z|=\sqrt{\det z}=\sqrt{a^2+b^2}$.
+\end{definition}
+Note that $|zw|=|z||w|$.
+\begin{proposition}
+    $\forall z,w\in\mathbb C,|z+w|\le |z|+|w|$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}

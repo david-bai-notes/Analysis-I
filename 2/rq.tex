@@ -1,0 +1,18 @@
+\subsection{Bonus: Construct the Reals from the Rationals}
+The definition of convergence and Cauchy sequence makes sense in $\mathbb Q$ as well.
+The matters, there are sequences in $\mathbb Q$ that ``want to converge'' (being Cauchy) but don't, like $1,1.4,1.41,1.414$.
+In fact, every $x\in\mathbb R$ is a limit of a sequence in $\mathbb Q$ (by e.g. decimal expansion).
+So we can define
+$$\mathbb R=\{(x_n)\in\mathbb Q: (x_n)\text{ is Cauchy}\}/\sim$$
+where $\sim$ is an equivalence relation defined by $(x_n)\sim (y_n)\iff x_n-y_n\to 0$.
+\begin{proposition}
+    This is indeed the real number with the intuitive definition of operations and order.
+\end{proposition}
+In particular $(x_n)\ge0=(0,0,\ldots)$ iff $\exists N\in\mathbb n,\forall n>N,x_n\ge 0$.
+\begin{proof}
+    Other properties are trivial, so we shall check the least-upper-bound property.
+    Note that the least-upper-bound property, the monotone sequence theorem and the statement that every Cauchy sequence converges are equivalent.
+    So we shall prove that every Cauchy sequence converges.
+    Suppose $(x_{m,n})=((x_m)_n)$ is a Cauchy sequence in $\mathbb R$ defined the way we made it.
+    Then the sequence $(y_k)=x_{k,k}$ goes to the limit we want.
+\end{proof}
